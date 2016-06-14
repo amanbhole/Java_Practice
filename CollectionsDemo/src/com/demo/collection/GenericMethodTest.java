@@ -1,4 +1,4 @@
-package com.demo.collections;
+package com.demo.collection;
 
 class GenericMethodTest
 {

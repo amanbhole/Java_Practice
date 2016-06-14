@@ -1,4 +1,4 @@
-package com.demo.collections;
+package com.demo.collection;
 
 public class MethodName {
 
@@ -18,11 +18,11 @@ public class MethodName {
 	}
 	public static String getMethodName(final int depth)
 	{
-		final StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+//		final StackTraceElement[] ste = Thread.currentThread().getStackTrace();
 		String name = new Object(){}.getClass().getEnclosingMethod().getName();
-		//System. out.println(ste[ste.length-depth].getClassName()+"#"+ste[ste.length-depth].getMethodName());
-		// return ste[ste.length - depth].getMethodName();  //Wrong, fails for depth = 0
-		// return ste[ste.length - 1 - depth].getMethodName(); //Thank you Tom Tresansky
+//		System. out.println(ste[ste.length-depth].getClassName()+"#"+ste[ste.length-depth].getMethodName());
+//		return ste[ste.length - depth].getMethodName();  //Wrong, fails for depth = 0
+//		return ste[ste.length - 1 - depth].getMethodName(); //Thank you Tom Tresansky
 		return name;
 	}
 
