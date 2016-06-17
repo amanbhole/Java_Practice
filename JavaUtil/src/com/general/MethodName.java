@@ -1,4 +1,4 @@
-package com.demo.collection;
+package com.general;
 
 public class MethodName {
 
@@ -16,7 +16,7 @@ public class MethodName {
 	public static String m1(int i) {
 		return getMethodName(i);
 	}
-	public static String getMethodName(final int depth)
+	static String getMethodName(final int depth)
 	{
 //		final StackTraceElement[] ste = Thread.currentThread().getStackTrace();
 		String name = new Object(){}.getClass().getEnclosingMethod().getName();
