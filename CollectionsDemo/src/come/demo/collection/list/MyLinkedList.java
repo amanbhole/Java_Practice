@@ -3,7 +3,7 @@ package come.demo.collection.list;
 
 public class MyLinkedList<E> {
 
-	private Node<E> head;
+	Node<E> head;
 
 	public Node<E> insert(E data) {
 		Node<E> node = new Node<E>(data);
@@ -26,6 +26,7 @@ public class MyLinkedList<E> {
 			return;
 		}
 
+		System.out.print("Printing elements: ");
 		Node<E> temp = head;
 		while(temp!=null) {
 			System.out.print(temp.data + " ");
@@ -124,14 +125,77 @@ public class MyLinkedList<E> {
 		return main.data;
 	}
 	
-	private static class Node<E> {
+	public boolean detectLoop() {
+		Node<E> slow_p = head, fast_p = head;
+        while (slow_p != null && fast_p != null && fast_p.next != null) {
+            slow_p = slow_p.next;
+            fast_p = fast_p.next.next;
+            if (slow_p == fast_p) {
+                return true;
+            }
+        }
+        return false;
+	}
+	
+	public void swapPairwise() {
+		Node<E> current = head;
+		while(current != null && current.next!=null) {
+			E temp = current.data;
+			current.data = current.next.data;
+			current.next.data = temp;
+			
+			current = current.next.next;
+		}
+	}
+	
+	public void deleteAlt() {
+		Node<E> previous = head, node = head.next;
+		
+		while(previous!=null && node!=null) {
+			previous.next = node.next;
+			
+			previous = previous.next;
+			if(previous!=null)
+				node = previous.next;
+		}
+	}
+	
+	public Node<E> reverseChunk(Node<E> node, int chunkSize) {
+		int count = 0;
+		
+		Node<E> previous = null;
+		Node<E> current = node;
+		Node<E> next = null;
+		while(count < chunkSize && current!=null) {
+			next = current.next;
+			current.next = previous;
+			previous = current;
+			current = next;
+			count++;
+		}
+		
+		if(next!=null) {
+			node.next = reverseChunk(next, chunkSize);
+		}
+		return previous;
+	}
+	
+	static class Node<E> {
 		private E data;
-		private Node<E> next;
+		Node<E> next;
 
 		public Node(E data) {
 			super();
 			this.data = data;
 			this.next = null;
+		}
+
+		public E getData() {
+			return data;
+		}
+
+		public Node<E> getNext() {
+			return next;
 		}
 	}
 }
